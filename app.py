@@ -4,15 +4,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # --- PAGE CONFIGURATION ---
-st.set_page_config(page_title="SVB Risk Analysis | UCD Smurfit", layout="wide")
+st.set_page_config(page_title="SVB Risk Analysis | Adam Kenny", layout="wide")
 
 # --- HEADER ---
 st.title("Capital Markets & Fixed Income Analysis: The SVB Collapse")
+
+# --- UPDATED SECTION HERE ---
 st.markdown("""
-**UCD Smurfit 2025 Project**
+**Created by Adam Kenny - MSc. Finance Student 2026**
 * This dashboard simulates the impact of **interest rate hikes** on a fixed income portfolio and the subsequent **liquidity crisis**.
 * **Instructions:** Use the sidebar to adjust the *Interest Rate Shock* and *Deposit Withdrawal* levels.
 """)
+# ----------------------------
+
 st.markdown("---")
 
 # --- SIDEBAR INPUTS ---
@@ -136,7 +140,6 @@ with c1:
     ax1.bar(df['Asset_Name'], df['Loss'], color=colors)
     ax1.set_ylabel("Loss ($ Millions)")
     ax1.axhline(0, color='black', linewidth=0.8)
-    # Rotating labels to prevent overlap
     plt.xticks(rotation=45) 
     st.pyplot(fig1)
 
@@ -155,13 +158,12 @@ with c2:
     ax2.bar(waterfall_data.keys(), waterfall_data.values(), color=['blue', 'orange', 'red', 'green' if current_equity > 0 else 'black'])
     ax2.axhline(0, color='black', linewidth=0.8)
     ax2.set_ylabel("Equity ($ Millions)")
-    # Rotating labels to prevent overlap
     plt.xticks(rotation=45)
     st.pyplot(fig2)
 
 # --- FOOTER ---
 with st.expander("View Underlying Data"):
-    # FIX IS HERE: We only format the numeric columns, not the strings
+    # Formatting applied only to specific columns to avoid string errors
     st.dataframe(df.style.format({
         'Face': "{:,.0f}",
         'Coupon': "{:.2%}",
