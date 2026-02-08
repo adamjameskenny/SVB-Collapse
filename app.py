@@ -136,6 +136,8 @@ with c1:
     ax1.bar(df['Asset_Name'], df['Loss'], color=colors)
     ax1.set_ylabel("Loss ($ Millions)")
     ax1.axhline(0, color='black', linewidth=0.8)
+    # Rotating labels to prevent overlap
+    plt.xticks(rotation=45) 
     st.pyplot(fig1)
 
 with c2:
@@ -153,8 +155,21 @@ with c2:
     ax2.bar(waterfall_data.keys(), waterfall_data.values(), color=['blue', 'orange', 'red', 'green' if current_equity > 0 else 'black'])
     ax2.axhline(0, color='black', linewidth=0.8)
     ax2.set_ylabel("Equity ($ Millions)")
+    # Rotating labels to prevent overlap
+    plt.xticks(rotation=45)
     st.pyplot(fig2)
 
 # --- FOOTER ---
 with st.expander("View Underlying Data"):
-    st.dataframe(df.style.format("{:,.2f}"))
+    # FIX IS HERE: We only format the numeric columns, not the strings
+    st.dataframe(df.style.format({
+        'Face': "{:,.0f}",
+        'Coupon': "{:.2%}",
+        'Maturity': "{:.0f}",
+        'Base_Yield': "{:.2%}",
+        'Initial_Price': "{:,.2f}",
+        'New_Yield': "{:.2%}",
+        'Shocked_Price': "{:,.2f}",
+        'Loss': "{:,.2f}",
+        'Loss_Pct': "{:.2f}%"
+    }))
