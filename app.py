@@ -184,6 +184,7 @@ with tab1:
             st.success("**Safe:** The bank met withdrawals using only Cash and AFS securities.")
 
 with tab2:
+    # --- EXISTING CODE STARTS HERE (KEEP THIS) ---
     st.header("The Macro View: Yield Curve Inversion")
     st.markdown("Before the collapse, the Yield Curve 'inverted' (Short-term rates > Long-term rates). This is a classic recession signal.")
     
@@ -206,6 +207,25 @@ with tab2:
     **What does this tell us?**
     * **2020 (Blue):** Rates were near zero. SVB bought billions in long-term bonds yielding ~1.5%.
     * **2023 (Red):** Rates skyrocketed to 5%. New bonds paid 5%, so SVB's old 1.5% bonds became worthless to sell.
+    """)
+    # --- EXISTING CODE ENDS HERE ---
+
+    # --- NEW CODE STARTS HERE (ADD THIS BELOW) ---
+    st.markdown("---") # Adds a divider line
+    st.header("Timeline of the Collapse")
+    st.markdown(r"""
+    #### 1. The Setup (2020-2021)
+    * **Excess Liquidity:** Tech sector boom leads to deposit surge ($60B $\to$ $189B).
+    * **The Trade:** SVB invests heavily in long-duration "Safe" Assets (MBS/Treasuries) yielding ~1.6%.
+    
+    #### 2. The Turn (2022)
+    * **Fed Pivots:** Interest rates skyrocket to combat inflation. Bond prices plummet.
+    * **Cash Burn:** VC funding stops; startups withdraw cash to survive, draining SVB's reserves.
+    
+    #### 3. The Collapse (March 2023)
+    * **March 8:** SVB announces a **$1.8B realized loss** on bond sales to raise cash.
+    * **March 9:** Panic spreads on Twitter. **$42 Billion** withdrawn in 24 hours.
+    * **March 10:** Regulators seize the bank.
     """)
 
 with tab3:
@@ -238,4 +258,5 @@ with st.expander("Show Underlying Data Model"):
         'Loss': "{:,.2f}",
         'Loss_Pct': "{:.2f}%"
     }))
+
 
