@@ -210,7 +210,8 @@ with tab2:
 
 with tab3:
     st.header("Financial Concepts Explained")
-    st.markdown("""
+    # Add the 'r' right here vvv
+    st.markdown(r"""
     ### 1. Duration Risk
     Duration measures how sensitive a bond's price is to interest rates.
     * **Formula:** $\Delta P \approx -D \times \Delta y$
@@ -237,3 +238,4 @@ with st.expander("Show Underlying Data Model"):
         'Loss': "{:,.2f}",
         'Loss_Pct': "{:.2f}%"
     }))
+
